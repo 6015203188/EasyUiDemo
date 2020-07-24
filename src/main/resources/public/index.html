@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <!-- 引入easyUI -->
+
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="static/Constant.js"></script>
+    <link rel="stylesheet" href="themes/icon.css"/>
+    <link rel="stylesheet" href="themes/bootstrap/easyui.css"/>
+
+
+    <style>
+        /* 全局的css代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* head的css代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+        #header_left {
+            float: left;
+            width: 350px;
+            height: 100%;
+            background: url(images/logo.jpg);
+            background-size: 100% 100%;
+        }
+
+        #header_center ul li {
+            float: left;
+            height: 107px;
+            padding: 0 30px;
+            font-size: 20px;
+            line-height: 107px;
+        }
+
+        #header_right {
+            float: right;
+        }
+
+        /* left的css代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+        /* center的css代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+        #center_content {
+            width: 100%;
+            height: 97%;
+        }
+
+        #center_bottom {
+            width: 100%;
+            height: 3%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="easyui-layout">
+<!--header start-->
+<div id="header" data-options="region:'north',border:true,collapsible:false,minHeight:107">
+    <div id="header_left"></div>
+    <div id="header_center">
+        <ul>
+            <li><a href="#" onclick="left.show();">首页EasyUI</a></li>
+            <li><a href="#">DemoEasyUI</a></li>
+            <li><a href="#">文档EasyUI</a></li>
+            <li><a href="#"> 扩展EasyUI</a></li>
+            <li><a href="#">下载Ecs</a></li>
+            <li><a href="#">推荐服务器授权 </a>
+            </li>
+        </ul>
+    </div>
+    <div id="header_right">登录人</div>
+</div>
+<!--header start-->
+
+<!--west start-->
+<div id="west" data-options="region:'west',collapsible:false,maxWidth:350">
+    <ul id="tt"></ul>
+</div>
+<!--west start-->
+
+<!--center start-->
+<div id="center" data-options="region:'center',collapsible:false">
+
+    <div id="center_content" class="easyui-tabs">
+
+    </div>
+    <div id="center_bottom">
+        Copyright @ 2018 ESENSOFT All Rights Reserved 北京亿信华辰软件有限责任公司版权所有
+    </div>
+</div>
+<!--center start-->
+
+
+</body>
+
+
+<script>
+
+    // head的js代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //点击首页EasyUI，left会出现不同的树
+    var left = {
+        show: function () {
+            $('#tt').tree({
+                url: WEB_ROOT_URL + 'getLeftTree',
+                lines: true,
+            });
+        }
+    }
+
+    // left的js代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // 点击left的tree，右边会出现不同的tabs页
+    $("#tt").tree({
+        onSelect: function (node) {
+            var title = node.text;
+            var flag = $('#center_content').tabs('exists', title);
+
+            if (flag) {
+                $('#center_content').tabs('select', title);
+            } else {
+                $('#center_content').tabs('add', {
+                    title: title,
+                    closable: true,
+                    collapsible: true,
+                    href: WEB_ROOT_URL + 'tab1.html',
+                });
+            }
+
+        },
+    });
+
+    // right的js代码------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+</script>
+
+</html>

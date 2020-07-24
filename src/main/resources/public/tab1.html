@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh_CH">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <!-- 引入easyUI -->
+
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script type="text/javascript" src="static/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="static/Constant.js"></script>
+    <link rel="stylesheet" href="themes/icon.css"/>
+    <link rel="stylesheet" href="themes/bootstrap/easyui.css"/>
+</head>
+
+<body>
+
+<div id="tb">
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true,width:200"></a>
+    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true,width:200"></a>
+
+    <input id="ss" class="easyui-searchbox">
+</div>
+
+<table id="tab_table" class="easyui-datagrid">
+    <thead>
+    <tr>
+        <th data-options="field:'id',width:200,sortable: true">ID</th>
+        <th data-options="field:'student',width:200,sortable: true">学生姓名</th>
+        <th data-options="field:'class',width:200,sortable: true">科目</th>
+        <th data-options="field:'score',width:300,sortable: true">分数</th>
+    </tr>
+    </thead>
+
+</table>
+<script>
+
+    //设置DataGrid的属性
+    $("#tab_table").datagrid({
+        url: WEB_ROOT_URL + 'getTabData',
+        striped: true,
+        pagination: true,
+        rownumbers: true,
+        fitColumns:true,
+        pagePosition: 'bottom',
+        toolbar: '#tb',
+    });
+
+    // 设置搜索框的属性
+    $("#ss").searchbox({
+        width: 200,
+        prompt: '请输入',
+        searcher: function (value,name) {
+            alert(value);
+        },
+    });
+
+</script>
+</body>
+
+</html>

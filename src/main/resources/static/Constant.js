@@ -1,0 +1,1 @@
+var WEB_ROOT_URL = '/EasyUIDemo/';
