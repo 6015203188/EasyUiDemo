@@ -124,6 +124,7 @@
     // 点击left的tree，右边会出现不同的tabs页
     $("#tt").tree({
         onSelect: function (node) {
+            console.log(node);
             var title = node.text;
             var flag = $('#center_content').tabs('exists', title);
 

@@ -38,13 +38,25 @@
 
     //设置DataGrid的属性
     $("#tab_table").datagrid({
-        url: WEB_ROOT_URL + 'getTabData',
+        // url: WEB_ROOT_URL + 'getTabData',
         striped: true,
         pagination: true,
         rownumbers: true,
         fitColumns:true,
         pagePosition: 'bottom',
         toolbar: '#tb',
+        columns: [[
+            {title: 'A', align: 'center'},
+            {title: 'B', align: 'center'},
+            {title: 'C', align: 'center'},
+            {title: 'D', align: 'center'},
+            {title: 'E', align: 'center'},
+        ], [
+            {field: 'listprice', title: 'List Price', width: 80, align: 'right', sortable: true},
+            {field: 'unitcost', title: 'Unit Cost', width: 80, align: 'right', sortable: true},
+            {field: 'attr1', title: 'Attribute', width: 100},
+            {field: 'status', title: 'Status', width: 60}
+        ]]
     });
 
     // 设置搜索框的属性
